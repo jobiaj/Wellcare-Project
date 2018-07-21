@@ -2,3 +2,4 @@
 wellcare/wellcare/local_settings.py
 */*/*.pyc
 .gitignore
+C:\\Users\\Option3\\workspace\\sqlitedb\\wellcare.db
