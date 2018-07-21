@@ -25,7 +25,7 @@ SECRET_KEY = '&x@mpf8(5!*vpr!azg9av@vl#h$!goggkll@g19@^(csqjb!vm'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -36,7 +36,9 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles'
+    'django.contrib.staticfiles',
+    'wellcare',
+    'company'
 ]
 
 MIDDLEWARE = [
@@ -50,6 +52,22 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'wellcare.urls'
+
+PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
+
+TEMPLATE_DIRS = (
+    # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
+    # Always use forward slashes, even on Windows.
+    # Don't forget to use absolute paths, not relative paths.
+    os.path.join(PROJECT_ROOT, 'templates').replace('\\','/'),
+)
+
+# List of callables that know how to import templates from various sources.
+# TEMPLATE_LOADERS = (
+#     'django.template.loaders.filesystem.Loader',
+#     'django.template.loaders.app_directories.Loader',
+# #     'django.template.loaders.eggs.Loader',
+# )
 
 TEMPLATES = [
     {
@@ -75,12 +93,8 @@ WSGI_APPLICATION = 'wellcare.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'myproject',
-        'USER': 'myprojectuser',
-        'PASSWORD': 'password',
-        'HOST': 'localhost',
-        'PORT': '',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'C:\\Users\\Option3\\workspace\\sqlitedb\\wellcare.db'
     }
 }
 
