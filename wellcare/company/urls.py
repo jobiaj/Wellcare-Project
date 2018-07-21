@@ -21,7 +21,5 @@ from . import views
 
 
 urlpatterns = [
-
-    url(r'^admin/', admin.site.urls),
-    url(r'^login/', views.get_login, name='login'),
+    url(r'^wellcare/home/$', views.get_homepage, name='homepage'),  
 ]  + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

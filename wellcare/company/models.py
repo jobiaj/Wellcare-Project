@@ -1,15 +1,11 @@
-# -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
 from django.db import models
 from django.contrib.auth.models import User
+from pytz import common_timezones
 
-# Create your models here.
+class WellCareUser(User):
+    employee_id = models.CharField(max_length=1000,  null=True, blank=True)
+    timezone = models.CharField(max_length=255, choices=[(x, x) for x in common_timezones], default='UTC')
+    #employee_info = models.ForeignKey('EmployeeInfo', blank=True, null=True)
 
-class WellcareUser(models.Model):
-    user = models.OneToOneField(User)
-    firstname = models.CharField(max_length=100)
-    lastname = models.CharField(max_length=100)
-    email_id = models.CharField(max_length=100)
-    password = models.CharField(max_length=100)
-    #avatar = models.ImageField(upload_to='avatar/', blank=True, null=True)

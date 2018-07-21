@@ -1,7 +1,7 @@
 from __future__ import unicode_literals
 
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth.models import AbstractUser
 
 
 class RoleType(models.Model):
@@ -34,5 +34,6 @@ class UserRoles(models.Model):
     role = models.ForeignKey('Role')
 
 class WellCareUser(AbstractUser):
-    timezone = models.CharField(max_length=255, default='UTC')
-    roles = models.ManyToManyField('Role', null=True, blank='True', through='UserRoles')
+    employee_id = models.CharField(max_length=1000,  null=True, blank=True)
+    #employee_info = models.ForeignKey('EmployeeInfo', blank=True, null=True)
+

@@ -23,3 +23,8 @@ def get_login(request,*args, **kwargs):
 			return render(request, 'login.html')
 	if request.method == "GET":
 		return render(request,'login.html')
+
+@login_required
+def get_homepage(request, *args, **kwargs):
+	return render(request, 'index.html')
+

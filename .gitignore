@@ -1,0 +1,4 @@
+*.pyc
+wellcare/wellcare/local_settings.py
+*/*/*.pyc
+.gitignore
