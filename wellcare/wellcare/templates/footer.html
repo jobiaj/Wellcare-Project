@@ -1,0 +1,17 @@
+{% load i18n %}
+{% load admin_static i18n %}
+{% load staticfiles %}
+
+<footer class="footer hidden-xs-down">
+    <p>©Wellcare.org.au. All rights reserved.</p>
+
+    <ul class="nav footer__nav">
+        <a class="nav-link" href="{% url 'homepage' %}">Homepage</a>
+
+        <a class="nav-link" href="http://www.wellcare.org.au/">Company</a>
+
+        <a class="nav-link" href="info@wellcare.org">Support</a>
+
+        <a class="nav-link" href="{% url 'contacts' %}">Contacts</a>
+    </ul>
+</footer>

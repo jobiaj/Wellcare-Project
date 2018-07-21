@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
@@ -16,15 +17,22 @@ def get_login(request,*args, **kwargs):
 		if user is not None:
 		    # A backend authenticated the credentials
 		    login(request, user)
-		    WellCareUser = user.wellcareuser
-		    return render(request, 'index.html',{'WellCareUser': WellCareUser})
+		    return HttpResponseRedirect(reverse('homepage'))
 		else:
 		    # No backend authenticated the credentials
-			return render(request, 'login.html')
+			return HttpResponseRedirect(reverse('login'))
 	if request.method == "GET":
-		return render(request,'login.html')
+		return render(request, 'login.html')
 
 @login_required
 def get_homepage(request, *args, **kwargs):
 	return render(request, 'index.html')
 
+@login_required
+def get_contact_info(request, *args, **kwargs):
+	return render(request, 'contact.html')
+
+@login_required
+def user_logout(request):
+	logout(request)
+	return HttpResponseRedirect(reverse('login'))

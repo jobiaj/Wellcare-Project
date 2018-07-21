@@ -30,7 +30,7 @@
 
             <section class="content">
                 <header class="content__title">
-                    <h1>Profile Informations</h1>
+                    <h1>Wellcare Australia</h1>
 
                     <div class="actions">
                             <a href="" class="actions__item zmdi zmdi-trending-up"></a>
@@ -48,25 +48,25 @@
                 </header>
                     <div class="card widget-contacts">
                         <div class="card-body">
-                            {% if not request.user.employee_info %}
-                            <div class="jumbotron">
-                                <h1 class="display-3">Hello, {{request.user}}</h1>
-                                <p class="lead">You have not updated the basic information, Please update the information. </p>
-
-                                <hr class="my-4">
-                                <a class="btn btn-light right" href="#" role="button">Add Details</a>
-                            </div>
-                            {% endif %}
+                            <h4 class="card-title">Contact Information</h4>
+                            <ul class="icon-list">
+                                <li><i class="zmdi zmdi-phone"></i> 02 6193 6116</li>
+                                <li><i class="zmdi zmdi-code-smartphone"></i> 0451 254 125</li>
+                                <li><i class="zmdi zmdi-email"></i> admin@wellcare.org.au</li>
+                                <li><i class="zmdi zmdi-facebook-box" ></i><a href="https://www.facebook.com/Wellcare-Australia-860317764074557/"> Wellcare Australia</a></li>
+                                <li><i class="zmdi zmdi-twitter"></i> @care_well (<a href="twitter.com/care_well">twitter.com/care_well)</a></li>
+                                <li><i class="zmdi zmdi-pin"></i>
+                                    <address>
+                                        PO Box 109, Mawson, ACT 2607
+                                    </address>
+                                </li>
+                            </ul>
                         </div>
-
-                        <a class="widget-contacts__map" href="">
-                            <img src="demo/img/widgets/map.png" alt="">
-                        </a>
                     </div>
                 </div>
-                {% block footer %}
-                     {% include "footer.html" %}
-                {% endblock %}
+            {% block footer %}
+                 {% include "footer.html" %}
+            {% endblock %}
 
             </section>
         </main>
