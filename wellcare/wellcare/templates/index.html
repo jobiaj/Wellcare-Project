@@ -5,7 +5,10 @@
 <html lang="en">
     {% block head %}
     {% include "base_site.html" %}
-    {% endblock %}   
+    {% endblock %}
+    <script>
+    
+    </script>   
 
     <body data-sa-theme="1">
         <main class="main">
@@ -54,14 +57,10 @@
                                 <p class="lead">You have not updated the basic information, Please update the information. </p>
 
                                 <hr class="my-4">
-                                <a class="btn btn-light right" href="#" role="button">Add Details</a>
+                                <button class="btn btn-light" id="btn_user_info" data-toggle="modal" data-target="#modal-large">Add Details</button>
                             </div>
                             {% endif %}
                         </div>
-
-                        <a class="widget-contacts__map" href="">
-                            <img src="demo/img/widgets/map.png" alt="">
-                        </a>
                     </div>
                 </div>
                 {% block footer %}
@@ -69,6 +68,41 @@
                 {% endblock %}
 
             </section>
+            <script id="add_user_info" type="text/x-handlebars-template">
+                <div class="modal fade" id="modal-large" tabindex="-1">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title pull-left">Add User Information</h5>
+                            </div>
+                            <div class="modal-body">
+                                <div class="panel panel-default">
+                                    <div class="panel-boby">
+                                    <form id="upload_form" class="form-horizontal" method="post" role="form"></form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-link">Save changes</button>
+                                <button type="button" class="btn btn-link" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </script>
+            <script src="{% static "js/jquery-3.3.1.min.js" %}"></script>
+            <script src="{% static "js/handlebars-v1.3.0.js" %}"></script>
+            <script src="{% static "js/bootstrap.js" %}"></script>
+            <script type="text/javascript">
+            $(document).ready(function() {
+                $('#btn_user_info').bind('click', function(event){
+                    endpoint = '{% 'add_user_info' %}'
+
+                })
+
+            });
+
+            </script>
         </main>
         <!-- Javascript -->
         <!-- Vendors -->
