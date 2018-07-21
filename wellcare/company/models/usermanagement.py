@@ -26,3 +26,11 @@ class Role(models.Model):
     description = models.CharField(max_length=1000,  null=True, blank=True)
     role_type = models.ForeignKey('RoleType')
     permissions = models.ManyToManyField('Functions')
+
+class UserRoles(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL)
+    role = models.ForeignKey('Role')
+
+class WellCareUser(AbstractUser):
+    timezone = models.CharField(max_length=255, default='UTC')
+    roles = models.ManyToManyField('Role', null=True, blank='True', through='UserRoles')
