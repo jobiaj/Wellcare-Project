@@ -5,7 +5,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Wellcare Data Interface</title>
 
         <!-- Vendor styles -->
@@ -16,4 +16,7 @@
 
         <!-- App styles -->
         <link rel="stylesheet" href="{% static "css/app.min.css" %}">
+        {% block extrahead %}
+        {% endblock %}
     </head>
+    

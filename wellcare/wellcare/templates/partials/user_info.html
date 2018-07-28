@@ -1,0 +1,242 @@
+{% load admin_static i18n %}
+{% load staticfiles %}
+
+<div class="card">
+	<div class="card-body">
+		<div class="form-group">
+		    <label class="card-body__title" for="{{ form.name.id_for_label }}">Full Name *</label>
+		    {{ form.name.errors }}
+		    {{ form.name }}
+		    <i class="form-group__bar"></i>
+		</div>
+	</div>
+	<div class="card-body">
+		<div class="form-group">
+		    <label class="card-body__title" for="{{ form.address.id_for_label }}">Address *</label>
+		    {{ form.address.errors }}
+		    {{ form.address }}
+		    <i class="form-group__bar"></i>
+		</div>
+	</div>
+		<div class="card-body">
+		<div class="form-group">
+		    <label class="card-body__title" for="{{ form.phoneNumber.id_for_label }}">Phone Number *</label>
+		    {{ form.phoneNumber.errors }}
+		    {{ form.phoneNumber }}
+		    <i class="form-group__bar"></i>
+		</div>
+	</div>
+			<div class="card-body">
+		<div class="form-group">
+		    <label class="card-body__title" for="{{ form.MobileNumber.id_for_label }}">Mobile Number *</label>
+		    {{ form.MobileNumber.errors }}
+		    {{ form.MobileNumber }}
+		    <i class="form-group__bar"></i>
+		</div>
+	</div>
+				<div class="card-body">
+		<div class="form-group">
+		    <label class="card-body__title" for="{{ form.EmailID.id_for_label }}">Email ID *</label>
+		    {{ form.EmailID.errors }}
+		    {{ form.EmailID }}
+		    <i class="form-group__bar"></i>
+		</div>
+	</div>
+				<div class="card-body">
+		<div class="form-group">
+		    <label class="card-body__title" for="{{ form.DOB.id_for_label }}">Date of Birth *</label>
+		    {{ form.DOB.errors }}
+		    {{ form.DOB }}
+		    <i class="form-group__bar"></i>
+		</div>
+	</div>
+					<div class="card-body">
+		<div class="form-group">
+		    <label class="card-body__title" for="{{ form.TaxFileName.id_for_label }}">Tax FileName *</label>
+		    {{ form.TaxFileName.errors }}
+		    {{ form.TaxFileName }}
+		    <i class="form-group__bar"></i>
+		</div>
+	</div>
+						<div class="card-body">
+		<div class="form-group">
+		    <label class="card-body__title" for="{{ form.Are_You_Australian_Citizen.id_for_label }}">Australian Citizen ? *</label>
+		    {{ form.Are_You_Australian_Citizen.errors }}
+		    {{ form.Are_You_Australian_Citizen }}
+		    <i class="form-group__bar"></i>
+		</div>
+	</div>
+							<div class="card-body">
+		<div class="form-group">
+		    <label class="card-body__title" for="{{ form.Do_You_have_working_visa.id_for_label }}">Do you have working visa ? *</label>
+		    {{ form.Do_You_have_working_visa.errors }}
+		    {{ form.Do_You_have_working_visa }}
+		    <i class="form-group__bar"></i>
+		</div>
+	</div>
+	<div class="card-body">
+		<div class="form-group">
+		    <label class="card-body__title" for="{{ form.VISA.id_for_label }}">VISA Details</label>
+		    {{ form.VISA.errors }}
+		    {{ form.VISA }}
+		    <i class="form-group__bar"></i>
+		</div>
+	</div>
+		<div class="card-body">
+		<div class="form-group">
+		    <label class="card-body__title" for="{{ form.Date_of_Employment.id_for_label }}">Date of Employment</label>
+		    {{ form.Date_of_Employment.errors }}
+		    {{ form.Date_of_Employment }}
+		    <i class="form-group__bar"></i>
+		</div>
+	</div>
+			<div class="card-body">
+		<div class="form-group">
+		    <label class="card-body__title" for="{{ form.Superannuation_Fund_Name.id_for_label }}">Superannuation Fund Name</label>
+		    {{ form.Superannuation_Fund_Name.errors }}
+		    {{ form.Superannuation_Fund_Name }}
+		    <i class="form-group__bar"></i>
+		</div>
+	</div>
+	<div class="card-body">Working with Vulnerable People ?</div>
+				<div class="card-body">
+		<div class="form-group">
+		    <label class="card-body__title" for="{{ form.CardNumber.id_for_label }}">Card Number</label>
+		    {{ form.CardNumber.errors }}
+		    {{ form.CardNumber }}
+		    <i class="form-group__bar"></i>
+		</div>
+	</div>
+					<div class="card-body">
+		<div class="form-group">
+		    <label class="card-body__title" for="{{ form.Expiry_date.id_for_label }}">Expiry Date</label>
+		    {{ form.Expiry_date.errors }}
+		    {{ form.Expiry_date }}
+		    <i class="form-group__bar"></i>
+		</div>
+	</div>	
+	<div class="card-body">Vehicle Details</div>
+				<div class="card-body">
+		<div class="form-group">
+		    <label class="card-body__title" for="{{ form.Registration_Number.id_for_label }}">Registration Number</label>
+		    {{ form.Registration_Number.errors }}
+		    {{ form.Registration_Number }}
+		    <i class="form-group__bar"></i>
+		</div>
+	</div>
+					<div class="card-body">
+		<div class="form-group">
+		    <label class="card-body__title" for="{{ form.Comprehensive_insurance.id_for_label }}">Comprehensive insurance ?</label>
+		    {{ form.Comprehensive_insurance.errors }}
+		    {{ form.Comprehensive_insurance }}
+		    <i class="form-group__bar"></i>
+		</div>
+	</div>
+	<div class="card-body">Bank Details</div>
+					<div class="card-body">
+		<div class="form-group">
+		    <label class="card-body__title" for="{{ form.Bank_name.id_for_label }}">Bank name</label>
+		    {{ form.Bank_name.errors }}
+		    {{ form.Bank_name }}
+		    <i class="form-group__bar"></i>
+		</div>
+	</div>
+					<div class="card-body">
+		<div class="form-group">
+		    <label class="card-body__title" for="{{ form.Branch.id_for_label }}">Branch</label>
+		    {{ form.Branch.errors }}
+		    {{ form.Branch }}
+		    <i class="form-group__bar"></i>
+		</div>
+	</div>
+					<div class="card-body">
+		<div class="form-group">
+		    <label class="card-body__title" for="{{ form.Account_name.id_for_label }}">Account name</label>
+		    {{ form.Account_name.errors }}
+		    {{ form.Account_name }}
+		    <i class="form-group__bar"></i>
+		</div>
+	</div>
+					<div class="card-body">
+		<div class="form-group">
+		    <label class="card-body__title" for="{{ form.BSB_number.id_for_label }}">BSB number</label>
+		    {{ form.BSB_number.errors }}
+		    {{ form.BSB_number }}
+		    <i class="form-group__bar"></i>
+		</div>
+	</div>
+						<div class="card-body">
+		<div class="form-group">
+		    <label class="card-body__title" for="{{ form.Account_name.id_for_label }}">Account number</label>
+		    {{ form.Account_name.errors }}
+		    {{ form.Account_name }}
+		    <i class="form-group__bar"></i>
+		</div>
+	</div>
+	<div class="card-body">Emergency Contact/ Next of kin details</div>
+	<div class="card-body">
+		<div class="form-group">
+		    <label class="card-body__title" for="{{ form.Contact_name.id_for_label }}">Contact name</label>
+		    {{ form.Contact_name.errors }}
+		    {{ form.Contact_name }}
+		    <i class="form-group__bar"></i>
+		</div>
+	</div>
+		<div class="card-body">
+		<div class="form-group">
+		    <label class="card-body__title" for="{{ form.Phone_number.id_for_label }}">Phone number</label>
+		    {{ form.Phone_number.errors }}
+		    {{ form.Phone_number }}
+		    <i class="form-group__bar"></i>
+		</div>
+	</div>
+		<div class="card-body">
+		<div class="form-group">
+		    <label class="card-body__title" for="{{ form.Address_of_emergency_contact.id_for_label }}">Address of emergency contact</label>
+		    {{ form.Address_of_emergency_contact.errors }}
+		    {{ form.Address_of_emergency_contact }}
+		    <i class="form-group__bar"></i>
+		</div>
+	</div>
+		<div class="card-body">
+		<div class="form-group">
+		    <label class="card-body__title" for="{{ form.Employee_signature.id_for_label }}">Employee signature</label>
+		    {{ form.Employee_signature.errors }}
+		    {{ form.Employee_signature }}
+		    <i class="form-group__bar"></i>
+		</div>
+	</div>
+		<div class="card-body">
+		<div class="form-group">
+		    <label class="card-body__title" for="{{ form.Date_of_Signature.id_for_label }}">Date of Signature</label>
+		    {{ form.Date_of_Signature.errors }}
+		    {{ form.Date_of_Signature }}
+		    <i class="form-group__bar"></i>
+		</div>
+	</div>
+		<div class="card-body">
+		<div class="form-group">
+		    <label class="card-body__title" for="{{ form.Date_of_Commencement.id_for_label }}">Date of Commencement</label>
+		    {{ form.Date_of_Commencement.errors }}
+		    {{ form.Date_of_Commencement }}
+		    <i class="form-group__bar"></i>
+		</div>
+	</div>
+			<div class="card-body">
+		<div class="form-group">
+		    <label class="card-body__title" for="{{ form.Employment_Status.id_for_label }}">Employment Status</label>
+		    {{ form.Employment_Status.errors }}
+		    {{ form.Employment_Status }}
+		    <i class="form-group__bar"></i>
+		</div>
+	</div>
+	<div class="card-body">If already a filled form available ?</div>
+		<div class="card-body">
+		<div class="form-group">
+		    <label class="card-body__title" for="{{ form.existing_filled_form.id_for_label }}">Existing Filled Form</label>
+		    {{ form.existing_filled_form.errors }}
+		    {{ form.existing_filled_form }}
+		    <i class="form-group__bar"></i>
+		</div>
+	</div>
+</div>

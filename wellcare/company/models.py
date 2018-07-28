@@ -9,6 +9,12 @@ class WellCareUser(User):
     timezone = models.CharField(max_length=255, choices=[(x, x) for x in common_timezones], default='UTC')
     employee_info = models.ForeignKey('EmployeeInfo', blank=True, null=True)
 
+    def add_user_info(self, user_info):
+        self.employee_info = user_info
+        self.save()
+
+
+
 class EmployeeInfo(models.Model):
     name = models.CharField(max_length=255,  null=True, blank=True)
     address = models.CharField(max_length=255,  null=True, blank=True)
@@ -52,3 +58,4 @@ class EmployeeInfo(models.Model):
         choices=Employment_Status_Choice,
         default=FullTime,
         )
+    existing_filled_form = models.FileField(upload_to='attachments',null=True, blank=True)

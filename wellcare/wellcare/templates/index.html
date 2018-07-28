@@ -51,7 +51,7 @@
                 </header>
                     <div class="card widget-contacts">
                         <div class="card-body">
-                            {% if not request.user.employee_info %}
+                            {% if not user_info_available %}
                             <div class="jumbotron">
                                 <h1 class="display-3">Hello, {{request.user}}</h1>
                                 <p class="lead">You have not updated the basic information, Please update the information. </p>
@@ -59,6 +59,8 @@
                                 <hr class="my-4">
                                 <button class="btn btn-light" id="btn_user_info" data-toggle="modal" data-target="#modal-large">Add Details</button>
                             </div>
+                            {% else %}
+                            {% include "partials/user_fields.html" %}
                             {% endif %}
                         </div>
                     </div>
@@ -69,7 +71,7 @@
 
             </section>
             <script id="add_user_info" type="text/x-handlebars-template">
-                <div class="modal fade" id="modal-large" tabindex="-1">
+                <div class="modal modal-styled fade adduserinfo" tabindex="-1" role="dialog" id="addUserInfo">
                     <div class="modal-dialog modal-lg">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -83,22 +85,89 @@
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-link">Save changes</button>
-                                <button type="button" class="btn btn-link" data-dismiss="modal">Close</button>
+                                <button type="button" id="modal_save_btn" class="btn btn-link">Save changes</button>
+                                <button type="button" id="modal_close_btn" class="btn btn-link" data-dismiss="modal">Close</button>
                             </div>
                         </div>
                     </div>
                 </div>
             </script>
-            <script src="{% static "js/jquery-3.3.1.min.js" %}"></script>
             <script src="{% static "js/handlebars-v1.3.0.js" %}"></script>
-            <script src="{% static "js/bootstrap.js" %}"></script>
+            <script src="{% static "js/jquery-3.3.1.slim.min.js" %}"></script>
+            <script src="{% static "js/popper.min.js" %}"></script>
+            <script src="{% static "js/bootstrap.min.js" %}"></script>
             <script type="text/javascript">
             $(document).ready(function() {
                 $('#btn_user_info').bind('click', function(event){
-                    endpoint = '{% 'add_user_info' %}'
+                    endpoint = "{% url 'add_usr_info' request.user.id %}"
+                    var gtcntnt = $.get(endpoint)
+                    gtcntnt.done(function(data) {
+                        if(data.status){
+                            $('body').append(Handlebars.compile($('#add_user_info').html())({}));
+                            $('#addUserInfo form').html(data.tmpl);
+                            $('#addUserInfo').modal().on('shown.bs.modal', function() {
+                                $(this).find('input:first').focus();
+                            })
+                            $('#addUserInfo form').on('keypress', function (event) {
+                                var keycode = (event.keyCode ? event.keyCode : event.which);
+                                if (keycode == '13') {
+                                    event.preventDefault();
+                                    $('#modal_save_btn').trigger('click');
 
-                })
+                                }
+                                // body...
+                            });
+                           $('#modal_save_btn').bind('click', function(ev){
+                                $('#modal_save_btn').prop('disabled', true);
+                                $('#addUserInfo form').unbind('keypress');
+                                var prms = $.post(endpoint, $('#upload_form').serialize());
+                                prms.done(function(data){
+                                    if (data.status && data.complete){
+                                        $('#addUserInfo').modal('hide');
+                                    } else {
+                                        if (data.status){
+                                            $('#addUserInfo form').html(data.tmpl);
+                                            $('#modal_save_btn').prop('disabled', false);
+                                            $('#addUserInfo form').on('keypress', function (event) {
+                                            var keycode = (event.keyCode ? event.keyCode : event.which);
+                                            if (keycode == '13') {
+                                                event.preventDefault();
+                                                $('#modal_save_btn').trigger('click');
+
+                                            }
+                                // body...
+                                           });
+
+                                        } else {
+                                            if (data.extra) {
+                                                $.howl ({
+                                                    type: "info",
+                                                    title: "Info",
+                                                    content: "Error Happened while saving data",
+                                                    iconCls: "fa fa-info"
+
+                                                });
+                                                $('#addUserInfo').modal('hide');
+                                            }
+                                        }
+                                    }
+                                })
+
+                           }) 
+                        // body...
+                        } else {
+                            if (data.extra) {
+                                $.howl({
+                                    type: "info",
+                                    title: "Info",
+                                    content: data.extra,
+                                    iconCls: "fa fa-info"
+                                });
+                                $('#addUserInfo').modal('hide');
+                            }
+                        }
+                });
+                });
 
             });
 
