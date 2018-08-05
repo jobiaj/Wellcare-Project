@@ -25,4 +25,7 @@ urlpatterns = [
     url(r'^wellcare/contacts/$', views.get_contact_info, name='contacts'),
     url(r'^wellcare/user/logout/$', views.user_logout, name='user_logout'),
     url(r'^wellcare/add/user_info/(?P<user_id>\d+)/$', views.add_user_informations, name='add_usr_info'),
+    url(r'^wellcare/edit/user_info/(?P<user_id>\d+)/$', views.edit_user_informations, name='edit_usr_info'),
+    url(r'^wellcare/user_management/$', views.user_management, name='user_management'),
+    url(r'^wellcare/user_profile_page/(?P<user_id>\d+)/$', views.get_user_info, name='user_info_page')
 ]  + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -51,19 +51,27 @@
                 </header>
                     <div class="card widget-contacts">
                         <div class="card-body">
-                            {% if not user_info_available %}
-                            <div class="jumbotron">
-                                <h1 class="display-3">Hello, {{request.user}}</h1>
-                                <p class="lead">You have not updated the basic information, Please update the information. </p>
+                            <div class="card-body">
+                        <h4 class="card-title">Users</h4>
+                        <h6 class="card-subtitle">Click on the user to view details</h6>
 
-                                <hr class="my-4">
-                                <button class="btn btn-light" id="btn_user_info" data-toggle="modal" data-target="#modal-large">Add Details</button>
-                            </div>
-                            {% else %}
-                                                            <hr class="my-4">
-                                <button class="btn btn-light" id="edit_user_info" data-toggle="modal" data-target="#modal-large">Edit Details</button>
-                            {% include "partials/user_fields.html" %}
-                            {% endif %}
+                        <div class="table-responsive">
+                            <div id="data-table_wrapper" class="dataTables_wrapper no-footer"><div class="dataTables_buttons hidden-sm-down actions"><span class="actions__item zmdi zmdi-print" data-table-action="print"></span><span class="actions__item zmdi zmdi-fullscreen" data-table-action="fullscreen"></span><div class="dropdown actions__item"><i data-toggle="dropdown" class="zmdi zmdi-download"></i><ul class="dropdown-menu dropdown-menu-right"><a href="" class="dropdown-item" data-table-action="excel">Excel (.xlsx)</a><a href="" class="dropdown-item" data-table-action="csv">CSV (.csv)</a></ul></div></div><div class="dt-buttons">   <a class="dt-button buttons-excel buttons-html5" tabindex="0" aria-controls="data-table" href="#"><span>Excel</span></a> <a class="dt-button buttons-csv buttons-html5" tabindex="0" aria-controls="data-table" href="#"><span>CSV</span></a> <a class="dt-button buttons-print" tabindex="0" aria-controls="data-table" href="#"><span>Print</span></a> </div><div class="dataTables_length" id="data-table_length"><label>Show <select name="data-table_length" aria-controls="data-table" class=""><option value="15">15 Rows</option><option value="30">30 Rows</option><option value="45">45 Rows</option><option value="-1">Everything</option></select> entries</label></div><div id="data-table_filter" class="dataTables_filter"><label>Search:<input type="search" class="" placeholder="Search for records..." aria-controls="data-table"></label></div><table id="data-table" class="table dataTable no-footer" role="grid" aria-describedby="data-table_info">
+                                <thead>
+                                    <tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="data-table" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending">Name</th><th class="sorting" tabindex="0" aria-controls="data-table" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending">EmailID</th><th class="sorting" tabindex="0" aria-controls="data-table" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending">PhoneNumber</th></tr>
+                                </thead>
+                                <tbody>
+                                    {% for user in users_info %}  
+                                <tr role="row" class="odd">
+                                        <td class="sorting_1"><a href="{% url 'user_info_page' user.id %}">{{user.username}}</a></td>
+                                        <td>{{user.employee_info.EmailID}}</td>
+                                        <td>{{user.employee_info.MobileNumber}}</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table><div class="dataTables_info" id="data-table_info" role="status" aria-live="polite">Showing 1 to 15 of 57 entries</div><div class="dataTables_paginate paging_simple_numbers" id="data-table_paginate"><a class="paginate_button previous disabled" aria-controls="data-table" data-dt-idx="0" tabindex="0" id="data-table_previous">Previous</a><span><a class="paginate_button current" aria-controls="data-table" data-dt-idx="1" tabindex="0">1</a><a class="paginate_button " aria-controls="data-table" data-dt-idx="2" tabindex="0">2</a><a class="paginate_button " aria-controls="data-table" data-dt-idx="3" tabindex="0">3</a><a class="paginate_button " aria-controls="data-table" data-dt-idx="4" tabindex="0">4</a></span><a class="paginate_button next" aria-controls="data-table" data-dt-idx="5" tabindex="0" id="data-table_next">Next</a></div></div>
+                        </div>
+                    </div>
                         </div>
                     </div>
                 </div>
@@ -98,6 +106,12 @@
             <script src="{% static "js/jquery-3.3.1.slim.min.js" %}"></script>
             <script src="{% static "js/popper.min.js" %}"></script>
             <script src="{% static "js/bootstrap.min.js" %}"></script>
+             <!-- Vendors: Data tables -->
+        <script src="{% static "vendors/bower_components/datatables.net/js/jquery.dataTables.min.js" %}"></script>
+        <script src="{% static "vendors/bower_components/datatables.net-buttons/js/dataTables.buttons.min.js" %}"></script>
+        <script src="{% static "vendors/bower_components/datatables.net-buttons/js/buttons.print.min.js" %}"></script>
+        <script src="{% static "vendors/bower_components/jszip/dist/jszip.min.js" %}"></script>
+        <script src="{% static "vendors/bower_components/datatables.net-buttons/js/buttons.html5.min.js" %}"></script>
             <script type="text/javascript">
             $(document).ready(function() {
                 $('#btn_user_info').bind('click', function(event){

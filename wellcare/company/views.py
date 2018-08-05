@@ -40,6 +40,13 @@ def get_homepage(request, *args, **kwargs):
 	return render(request, 'index.html', data)
 
 @login_required
+def user_management(request, *args, **kwargs):
+	#import pdb; pdb.set_trace()
+	users_info = WellCareUser.objects.all()
+	data = {'users_info': users_info}
+	return render(request, 'usermanagement.html', data)
+
+@login_required
 def get_contact_info(request, *args, **kwargs):
 	return render(request, 'contact.html')
 
@@ -75,3 +82,46 @@ def add_user_informations(request, user_id):
 	status = False if extra else True
 	res = {'status': status, 'complete': False, 'tmpl': tmpl, 'extra': extra}
 	return HttpResponse(json.dumps(res), content_type='application/json')
+
+@login_required
+@csrf_exempt
+def edit_user_informations(request, user_id):
+	user = WellCareUser.objects.get(id=user_id)
+	employee_info = user.employee_info
+	form = UserInfoForm(instance=employee_info)
+	extra = None
+	if request.method == 'POST':
+		form = UserInfoForm(request.POST)
+
+		if form.is_valid():
+			try:
+				user = WellCareUser.objects.get(id=user_id)
+				user_info = form.save()
+				user.add_user_info(user_info)
+			except Exception as e:
+				extra = 'Error occured during adding user info %s' %str(e)
+				res = {'status': status, 'complete': False, 'tmpl': tmpl, 'extra': extra}
+				return HttpResponse(json.dumps(res), content_type='application/json')
+			else:
+				data = {'user_info_available': True, 'user_info': user_info}
+				return render(request, 'index.html', data)
+	for bound_field in form:
+		bound_field.field.widget.attrs.update({'class': 'form-control'})
+
+	tmpl = render_to_string('partials/user_info.html', {'form': form}, request)
+	status = False if extra else True
+	res = {'status': status, 'complete': False, 'tmpl': tmpl, 'extra': extra}
+	return HttpResponse(json.dumps(res), content_type='application/json')
+
+
+@login_required
+@csrf_exempt
+def get_user_info(request, user_id):
+	user = WellCareUser.objects.get(id=user_id)
+	user_info = WellCareUser.objects.get(id=user_id).employee_info
+	user_info_available = False
+	if user_info:
+		user_info_available = True
+	data = {'user_info_available': user_info_available, 'user_info': user_info}
+	return render(request, 'user_profile.html', data)
+

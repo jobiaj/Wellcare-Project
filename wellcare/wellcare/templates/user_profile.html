@@ -53,15 +53,14 @@
                         <div class="card-body">
                             {% if not user_info_available %}
                             <div class="jumbotron">
-                                <h1 class="display-3">Hello, {{request.user}}</h1>
-                                <p class="lead">You have not updated the basic information, Please update the information. </p>
+                                <p class="lead">Information is not available for this user</p>
 
                                 <hr class="my-4">
-                                <button class="btn btn-light" id="btn_user_info" data-toggle="modal" data-target="#modal-large">Add Details</button>
+                                <!-- <button class="btn btn-light" id="btn_user_info" data-toggle="modal" data-target="#modal-large">Add Details</button> -->
                             </div>
                             {% else %}
                                                             <hr class="my-4">
-                                <button class="btn btn-light" id="edit_user_info" data-toggle="modal" data-target="#modal-large">Edit Details</button>
+                               <!--  <button class="btn btn-light" id="edit_user_info" data-toggle="modal" data-target="#modal-large">Edit Details</button> -->
                             {% include "partials/user_fields.html" %}
                             {% endif %}
                         </div>
